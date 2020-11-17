@@ -1,34 +1,33 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+This function will create an object that convert a matrix 
 
 makeCacheMatrix <- function(x = matrix()) {
-  m <- NULL
+  s <- NULL
   set <- function(y){
     x<<-y
-    m<<- NULL
+    s<<- NULL
   }
   get <- function() x
-  setsolve <- function(solve) m <<- mean
-  getsolve <- function() m
+  setsolve <- function(solve) s <<- solve
+  getsolve <- function() s
   list(set = set, get = get, 
        setsolve = setsolve,
        getsolve = getsolve)
 }
 
 
-## Write a short comment describing this function
+The following function invert the matrix crated with the function above
+ If the invert matrix has not been calculated the function will calculate this 
+  from the data provided
 
 cacheSolve <- function(x, ...) {
-  m <- x$getsolve
-  if(!is.null(m)){
+  s <- x$getsolve
+  if(!is.null(s)){
       message("getting cached data")
-      return(m)
+      return(s)
   }
   data <- x$get()
-  m <- solve(data, ...)
-  x$setvolve(m)
-  m
+  s <- solve(data, ...)
+  x$setvolve(s)
+  s
   ## Return a matrix that is the inverse of 'x'
 }
